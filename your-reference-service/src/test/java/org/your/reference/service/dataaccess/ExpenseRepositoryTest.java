@@ -8,20 +8,26 @@ import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.your.reference.service.entity.Expense;
+import org.your.reference.service.impl.ExpenseServiceImpl;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @Transactional
 public class ExpenseRepositoryTest {
 
-	@Autowired
-	private ExpenseRepository expenseRepository;
 	
+	@InjectMocks
+	ExpenseServiceImpl expenseService;
+
+	@Mock
+	private ExpenseRepository expenseRepository;
 
 	@Test
 	@Rollback(false)
