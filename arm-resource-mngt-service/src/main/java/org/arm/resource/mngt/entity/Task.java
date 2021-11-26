@@ -13,8 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,11 +28,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "taskId")
 public class Task {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="task_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "task_id")
 	private int taskId;
 	private String taskName;
 	private String taskOwner;
@@ -46,15 +47,15 @@ public class Task {
 	private Timestamp createDate;
 	private Timestamp updateDate;
 	private int isDeleted;
-	
+
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="project_id")
+	@JoinColumn(name = "project_id")
 	private Project project;
-	
-	@JsonManagedReference
+
+	// @JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="resource_id")
+	@JoinColumn(name = "resource_id")
 	private Resource resource;
 
 	public int getTaskId() {
@@ -160,6 +161,5 @@ public class Task {
 	public void setResource(Resource resource) {
 		this.resource = resource;
 	}
-	
-	
+
 }

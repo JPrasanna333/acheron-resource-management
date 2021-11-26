@@ -25,7 +25,7 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+//@ToString
 public class Project {
 
 	@Id
@@ -123,6 +123,12 @@ public class Project {
 	}
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
+	}
+	@Override
+	public String toString() {
+		return "Project [projectId=" + projectId + ", projectName=" + projectName + ", projectOwner=" + projectOwner
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", priority=" + priority + ", status=" + status
+				+ ", createDate=" + createDate + ", updateDate=" + updateDate + ", isDeleted=" + isDeleted + "]";
 	}
 	
 }

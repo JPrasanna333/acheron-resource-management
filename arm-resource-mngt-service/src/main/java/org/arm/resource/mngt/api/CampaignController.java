@@ -9,6 +9,8 @@ import org.arm.resource.mngt.entity.Priority;
 import org.arm.resource.mngt.entity.Status;
 import org.arm.resource.mngt.service.ICampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,25 +19,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class CampaignController {
 	@Autowired
 	private ICampaignService campaignService;
-	
+
 	@GetMapping("/campaign")
-	public List<Campaign> allC(){
-		return campaignService.getAllCampaign();
+	public ResponseEntity<List<Campaign>> getAllCampaign() {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("desc", "All Campaign details are retrived successfully");
+		List<Campaign> campaignList = campaignService.getAllCampaign();
+		return ResponseEntity.ok().headers(headers).body(campaignList);
 	}
-	
+
 	@PostMapping("/campaign/create")
-	public void createCampaign(){
+	public void createCampaign() {
 		Campaign campaign = new Campaign();
 		campaign.setCampaignName("Campaign1");
 		campaign.setCampaignOwner("Test");
 		campaign.setCreateDate(new Timestamp(new Date().getTime()));
-		campaign.setEndDate(new Timestamp(new Date().getTime() + 15*86400 ));
+		campaign.setEndDate(new Timestamp(new Date().getTime() + 15 * 86400));
 		campaign.setIsDeleted(0);
 		campaign.setPriority(Priority.MEDIUM);
 		campaign.setStatus(Status.IN_PROGRESS);
 		campaign.setStartDate(new Timestamp(new Date().getTime()));
-		
+
 		campaignService.createCampaign(campaign);
-		
+
 	}
 }

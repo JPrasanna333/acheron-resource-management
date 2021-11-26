@@ -1,4 +1,4 @@
-package org.arm.resource.mngt.service;
+package org.arm.resource.mngt.service.api;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

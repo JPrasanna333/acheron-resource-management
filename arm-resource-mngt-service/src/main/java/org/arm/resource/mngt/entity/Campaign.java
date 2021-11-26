@@ -15,14 +15,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class Campaign {
 	@Id
 	private int campaignId;
@@ -108,5 +106,13 @@ public class Campaign {
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
+	@Override
+	public String toString() {
+		return "Campaign [campaignId=" + campaignId + ", campaignName=" + campaignName + ", campaignOwner="
+				+ campaignOwner + ", startDate=" + startDate + ", endDate=" + endDate + ", priority=" + priority
+				+ ", status=" + status + ", createDate=" + createDate + ", updateDate=" + updateDate + ", isDeleted="
+				+ isDeleted + "]";
+	}
+	
 	
 }

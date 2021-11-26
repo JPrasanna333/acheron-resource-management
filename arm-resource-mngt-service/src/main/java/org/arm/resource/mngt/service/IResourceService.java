@@ -6,5 +6,6 @@ import org.arm.resource.mngt.entity.Resource;
 
 public interface IResourceService {
 	public void save(Resource resource);
-	public List<Resource> findAll();
+
+	public List<Resource> getAllResource();
 }
