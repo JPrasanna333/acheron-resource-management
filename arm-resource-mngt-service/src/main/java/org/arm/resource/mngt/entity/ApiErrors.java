@@ -8,12 +8,21 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 public class ApiErrors {
-	
+
 	LocalDateTime timestamp;
 	String message;
 	int status;
 	String error;
+
+	public ApiErrors(LocalDateTime timestamp, String message, int status, String error) {
+		super();
+		this.timestamp = timestamp;
+		this.message = message;
+		this.status = status;
+		this.error = error;
+	}
+
 }
